@@ -5,6 +5,20 @@
 node_modules/
 vendor/
 
+# laravel framework (unused - served by Node.js)
+/app/
+/bootstrap/
+/config/
+/routes/
+/storage/
+/artisan
+/composer.json
+/composer.lock
+/public/index.php
+
+# editor
+.vscode/
+
 # build output (committed for Vercel deployment)
 
 # OS
