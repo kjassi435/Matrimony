@@ -1,0 +1,18 @@
+# environment
+.env
+
+# dependencies
+node_modules/
+vendor/
+
+# build output
+public/build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# local data (migrated to Turso)
+users.json
+saved.json
+reviews.json
