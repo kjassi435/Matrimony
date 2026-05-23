@@ -184,7 +184,7 @@ function getURLParams(req) {
 }
 
 const manifest = JSON.parse(readFile(path.join(PUBLIC, 'build', 'manifest.json')) || '{}');
-const cssFile = manifest['resources/css/app.css']?.file || 'assets/app.css';
+const cssFile = manifest['resources/css/app.css']?.file || manifest['resources/js/app.css']?.file || 'assets/app.css';
 const jsFile = manifest['resources/js/app.js']?.file || 'assets/app.js';
 
 function resolveComponent(name) {
@@ -214,8 +214,10 @@ function renderBlade(template, options = {}) {
         return `{{${expr}}}`;
     });
 
+    const cssContent = readFile(path.join(PUBLIC, 'build', cssFile)) || '';
+    const jsContent = readFile(path.join(PUBLIC, 'build', jsFile)) || '';
     html = html.replace(/@vite\(\s*\[(.+?)\]\s*\)/g, () =>
-        `<link rel="stylesheet" href="/build/${cssFile}"><script type="module" src="/build/${jsFile}"></script>`);
+        `<style>${cssContent}</style><script>${jsContent}<\/script>`);
 
     html = html.replace(/@csrf/g, '');
     html = html.replace(/@method\('([^']+)'\)/g, '');
