@@ -15,10 +15,5 @@
             "src": "/(.*)",
             "dest": "api/index.mjs"
         }
-    ],
-    "env": {
-        "TURSO_DB_URL": "@turso-db-url",
-        "TURSO_AUTH_TOKEN": "@turso-auth-token",
-        "COOKIE_SECRET": "@cookie-secret"
-    }
+    ]
 }
