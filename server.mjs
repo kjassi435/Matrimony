@@ -215,7 +215,7 @@ function renderBlade(template, options = {}) {
     });
 
     const cssContent = readFile(path.join(PUBLIC, 'build', cssFile)) || '';
-    const jsContent = readFile(path.join(PUBLIC, 'build', jsFile)) || '';
+    const jsContent = (readFile(path.join(PUBLIC, 'build', jsFile)) || '').replace(/kn\.start\(\);?\s*$/, '');
     html = html.replace(/@vite\(\s*\[(.+?)\]\s*\)/g, () =>
         `<style>${cssContent}</style><script>${jsContent}<\/script>`);
 
@@ -264,7 +264,7 @@ function renderBlade(template, options = {}) {
         html = html.replace('<main>', `<main><div class="max-w-6xl mx-auto px-4 pt-20"><div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm flex items-center gap-2"><i class="fas fa-exclamation-circle"></i>${options.flash.error}</div></div>`);
     }
 
-    return html;
+    return html + '<script>kn.start()<\/script>';
 }
 
 function extractSections(vc) {
